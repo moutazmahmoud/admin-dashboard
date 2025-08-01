@@ -1,0 +1,40 @@
+// components/Sidebar.tsx
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { navItems } from "../lib/navItems";
+import NavItem from "./NavItem";
+
+const ITEM_HEIGHT = 50;
+
+const Sidebar = () => {
+  const { pathname } = useLocation();
+
+  const activeIndex = navItems.findIndex((item) => item.to === pathname);
+  const showIndicator = activeIndex !== -1;
+
+  return (
+    <div className="bg-main relative h-screen w-15 p-1.5 text-center">
+      <h2 className="mb-[1.875rem] text-[1.25rem] font-extrabold">
+        <span className="text-primary">Dash</span>Stack
+      </h2>
+
+      <ul className="relative z-10">
+        {/* Background highlight */}
+        {showIndicator && (
+          <motion.div
+            className="absolute -left-[1.78125rem] right-0 top-[0px] z-0 h-[50px] w-[0.5625rem] rounded-[0.25rem] bg-primary"
+            style={{ top: activeIndex * ITEM_HEIGHT }}
+            layout
+            layoutId="nav-active-indicator"
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          />
+        )}
+        {navItems.map((item) => (
+          <NavItem key={item.to} {...item} />
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Sidebar;
