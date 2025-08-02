@@ -1,16 +1,22 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { User } from "firebase/auth";
 
 type AuthState = {
   user: User | null;
-  setUser: (user: User | null) => void;
+  setUser: (user: User) => void;
   logout: () => void;
 };
 
-const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  setUser: (user) => set({ user }),
-  logout: () => set({ user: null }),
-}));
-
-export default useAuthStore;
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      setUser: (user) => set({ user }),
+      logout: () => set({ user: null }),
+    }),
+    {
+      name: "auth-storage",
+    },
+  ),
+);

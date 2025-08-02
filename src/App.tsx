@@ -7,6 +7,8 @@ import { Favorites } from "./pages/Favorites";
 import { OrderLists } from "./pages/Order Lists";
 import { Register } from "./pages/Register";
 import AuthLayout from "./layouts/AuthLayout";
+import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const App: FC = () => {
   return (
@@ -20,7 +22,9 @@ const App: FC = () => {
         <Route path="*" element={<NoMatch />} />
       </Route>
       <Route path="/auth" element={<AuthLayout />}>
-        <Route index element={<Register />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
       </Route>
     </Routes>
   );

@@ -1,37 +1,33 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
-import {useAuthStore} from "@/store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useState } from "react";
 import InputField from "@/components/Input";
 import AuthModal from "@/components/AuthModal";
-import CheckboxWithLabel from "@/components/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function Register() {
+export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [generalError, setGeneralError] = useState("");
 
   const [errors, setErrors] = useState({
     email: "",
-    userName: "",
     password: "",
-    terms: "",
   });
+
   const navigate = useNavigate();
 
-  const isFormInvalid = !email || !password || !userName || !terms;
+  const isFormInvalid = !email || !password;
 
-  const handleRegister = async () => {
+  const handleLogin = async () => {
     if (loading) return;
 
-    if (!email || !password || !userName) {
+    if (!email || !password) {
       return setGeneralError("Please fill in all fields");
     }
 
@@ -42,35 +38,13 @@ export default function Register() {
       }));
     }
 
-    if (password.length < 6) {
-      return setErrors((prev) => ({
-        ...prev,
-        password: "Password must be at least 6 characters",
-      }));
-    }
-    if (!terms) {
-      return setErrors((prev) => ({
-        ...prev,
-        terms: "You must agree to the terms and conditions",
-      }));
-    }
     setLoading(true);
     try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      await updateProfile(result.user, {
-        displayName: userName,
-      });
-      setUser({ ...result.user, displayName: userName });
-
-      navigate("/");
-
-      console.log("result:", result);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      setUser(result.user);
+      navigate("/"); // redirect to dashboard or homepage
     } catch (err: any) {
-      setGeneralError(err.message || "Registration error");
+      setGeneralError(err.message || "Login error");
     } finally {
       setLoading(false);
     }
@@ -78,16 +52,16 @@ export default function Register() {
 
   return (
     <AuthModal
-      title="Create an Account"
-      description="Create an account to continue"
-      buttonText={loading ? "Loading..." : "Sign Up"}
-      onClick={handleRegister}
+      title="Login to Your Account"
+      description="Enter your credentials to continue"
+      buttonText={loading ? "Loading..." : "Login"}
+      onClick={handleLogin}
       buttonDisabled={loading || isFormInvalid}
       bottomChildren={
         <div className="mt-1 flex items-center justify-center">
-          Already have an account?{" "}
-          <Link to="/auth/login" className="text-blue-600 underline">
-            Login
+          Don’t have an account?{" "}
+          <Link to="/auth/register" className="ml-1 text-blue-600 underline">
+            Sign Up
           </Link>
         </div>
       }
@@ -111,25 +85,7 @@ export default function Register() {
         error={errors.email}
         classes="mb-1.5"
       />
-      <label
-        htmlFor="user-name"
-        className="mb-0.5 block text-[1.125rem] font-semibold"
-      >
-        User name
-      </label>
-      <InputField
-        type="text"
-        id="user-name"
-        name="user-name"
-        value={userName}
-        onChange={(e) => {
-          setUserName(e.target.value);
-          if (errors.userName) setErrors((prev) => ({ ...prev, userName: "" }));
-        }}
-        placeholder="Enter your user name"
-        error={errors.userName}
-        classes="mb-1.5"
-      />
+
       <div className="mb-0.5 flex items-center justify-between">
         <label
           htmlFor="password"
@@ -152,15 +108,7 @@ export default function Register() {
         error={errors.password}
         classes="mb-1.5"
       />
-      <CheckboxWithLabel
-        checked={terms}
-        onChange={() => setTerms(!terms)}
-        label="I agree to the Terms and Conditions"
-        id="terms-checkbox"
-      />
-      {errors.terms && (
-        <p className="mt-1 text-sm text-red-500">{errors.terms}</p>
-      )}
+
       {generalError && (
         <p className="mt-1 text-sm text-red-500">{generalError}</p>
       )}
