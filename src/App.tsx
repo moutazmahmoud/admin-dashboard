@@ -1,14 +1,18 @@
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home, NoMatch } from "@/pages";
+import {
+  Home,
+  NoMatch,
+  Products,
+  Favorites,
+  OrderLists,
+  Register,
+  Login,
+  ForgotPassword,
+  ProductsStock,
+} from "./pages";
 import DashboardLayout from "./layouts/DashboardLayout";
-import { Products } from "./pages/Products";
-import { Favorites } from "./pages/Favorites";
-import { OrderLists } from "./pages/Order Lists";
-import { Register } from "./pages/Register";
 import AuthLayout from "./layouts/AuthLayout";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
 
 const App: FC = () => {
   return (
@@ -18,7 +22,7 @@ const App: FC = () => {
         <Route path="products" element={<Products />} />
         <Route path="favorites" element={<Favorites />} />
         <Route path="order-lists" element={<OrderLists />} />
-        <Route path="product-stock" element={<Products />} />
+        <Route path="product-stock" element={<ProductsStock />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
       <Route path="/auth" element={<AuthLayout />}>
