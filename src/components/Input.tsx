@@ -8,10 +8,12 @@ type InputFieldProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   classes?: string;
+  id?: string;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
   type = "text",
+  id,
   name,
   value,
   placeholder,
@@ -24,8 +26,8 @@ const InputField: React.FC<InputFieldProps> = ({
       <input
         type={type}
         name={name}
-        id={name}
-        className={`border-[1px] w-full rounded-[0.5rem] border-solid border-[#D8D8D8] bg-[#F1F4F9] p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+        id={id}
+        className={`w-full rounded-[0.5rem] border-[1px] border-solid border-[#D8D8D8] bg-[#F1F4F9] p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error ? "border-red-500" : "border-gray-300"
         } `}
         placeholder={placeholder}

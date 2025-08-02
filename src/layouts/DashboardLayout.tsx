@@ -1,5 +1,5 @@
 // layouts/DashboardLayout.tsx
-import TopBar from "@/components/topbar";
+import TopBar from "@/components/Topbar";
 import Sidebar from "../components/Sidebar";
 import { Outlet } from "react-router-dom";
 
