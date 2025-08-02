@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./button";
 
 type AuthModalProps = {
   title?: string;
@@ -27,7 +28,9 @@ const AuthModal = ({
       )}
       {children}
 
-      <button onClick={onClick}>{buttonText}</button>
+      <Button onClick={onClick} classes="mt-1 w-full">
+        {buttonText}
+      </Button>
     </div>
   );
 };

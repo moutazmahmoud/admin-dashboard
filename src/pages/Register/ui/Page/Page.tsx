@@ -8,6 +8,7 @@ import AuthModal from "@/components/AuthModal";
 export default function Register() {
   const setUser = useAuthStore((state) => state.setUser);
   const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -29,12 +30,11 @@ export default function Register() {
   return (
     <AuthModal
       title="Create an Account"
-      description="Create a account to continue"
+      description="Create an account to continue"
       buttonText="Sign Up"
       onClick={handleRegister}
     >
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-
+      <label htmlFor="email">Email address</label>
       <InputField
         type="email"
         name="email"
@@ -42,9 +42,22 @@ export default function Register() {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
         error={error}
-        classes="mb-2.5"
+        classes="mb-1.5"
       />
-      <label htmlFor="password">Password</label>
+      <label htmlFor="user-name">User name</label>
+      <InputField
+        type="text"
+        name="user-name"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+        placeholder="Enter your user name"
+        error={error}
+        classes="mb-1.5"
+      />
+      <div className="flex items-center justify-between">
+        <label htmlFor="password">Password</label>
+        <a href="">Forgot Password?</a>
+      </div>
       <InputField
         type="password"
         name="password"
