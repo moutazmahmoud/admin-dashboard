@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
@@ -14,10 +16,11 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`rounded-0.5 bg-primary px-1.5 py-1 text-[1.25rem] font-bold text-white ${
-        disabled ? "bg-[#b2c3e9]" : ""
-      }  ${classes}`}
-      disabled={disabled}
+      className={clsx(
+        "rounded-0.5 px-1.5 py-1 text-[1.25rem] font-bold text-white",
+        disabled ? "bg-[#b2c3e9]" : "bg-primary",
+        classes,
+      )}
     >
       {children}
     </button>
