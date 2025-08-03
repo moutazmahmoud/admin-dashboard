@@ -1,6 +1,6 @@
 // components/NavItem.tsx
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 
 interface NavItemProps {
   to: string;
@@ -17,16 +17,19 @@ const NavItem = ({ to, label, Icon }: NavItemProps) => {
       {isActive && (
         <motion.div
           layoutId="nav-active-bg"
-          className="absolute inset-0 z-0 bg-primary"
+          className="absolute inset-0 z-0 rounded-0.75 bg-primary"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          transition={{
+            duration: 0.3,
+            ease: easeInOut,
+          }}
         />
       )}
       <Link
         to={to}
-        className={` text-[0.875rem] relative z-10 flex items-center gap-1 py-[0.8125rem] px-1 transition-colors ease-in-out duration-200 font-semibold ${
+        className={` relative z-10 flex items-center gap-1 px-1 py-[0.8125rem] text-[0.875rem] font-semibold transition-colors duration-200 ease-in-out ${
           isActive ? "fill-white text-white" : "fill-text text-text"
         }`}
       >

@@ -1,8 +1,9 @@
+import PageWrapper from "@/components/PageWrapper";
 import { FC } from "react";
 
 const Favorites: FC = () => {
   return (
-    <>
+    <PageWrapper>
       <section>
         <div className="">
           <div className="hero-content flex-col lg:flex-row">
@@ -12,7 +13,7 @@ const Favorites: FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </PageWrapper>
   );
 };
 

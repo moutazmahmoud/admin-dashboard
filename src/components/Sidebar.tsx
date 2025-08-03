@@ -1,9 +1,10 @@
 // components/Sidebar.tsx
 import { useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import { navItems } from "../lib/navItems";
 import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
+import { DiUbuntu } from "react-icons/di";
 
 const ITEM_HEIGHT = 50;
 
@@ -31,7 +32,10 @@ const Sidebar = () => {
             style={{ top: activeIndex * ITEM_HEIGHT }}
             layout
             layoutId="nav-active-indicator"
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={{
+              duration: 0.3,
+              ease: easeInOut,
+            }}
           />
         )}
         {navItems.map((item) => (

@@ -1,11 +1,12 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
-import {useAuthStore} from "@/store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useState } from "react";
 import InputField from "@/components/Input";
 import AuthModal from "@/components/AuthModal";
 import CheckboxWithLabel from "@/components/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
+import PageWrapper from "@/components/PageWrapper";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -77,93 +78,97 @@ export default function Register() {
   };
 
   return (
-    <AuthModal
-      title="Create an Account"
-      description="Create an account to continue"
-      buttonText={loading ? "Loading..." : "Sign Up"}
-      onClick={handleRegister}
-      buttonDisabled={loading || isFormInvalid}
-      bottomChildren={
-        <div className="mt-1 flex items-center justify-center">
-          Already have an account?{" "}
-          <Link to="/auth/login" className="text-blue-600 underline">
-            Login
-          </Link>
-        </div>
-      }
-    >
-      <label
-        htmlFor="email"
-        className="mb-0.5 block text-[1.125rem] font-semibold"
+    <PageWrapper>
+      <AuthModal
+        title="Create an Account"
+        description="Create an account to continue"
+        buttonText={loading ? "Loading..." : "Sign Up"}
+        onClick={handleRegister}
+        buttonDisabled={loading || isFormInvalid}
+        bottomChildren={
+          <div className="mt-1 flex items-center justify-center">
+            Already have an account?
+            <Link to="/auth/login" className="ml-0.5 text-blue-600 underline">
+              Login
+            </Link>
+          </div>
+        }
       >
-        Email
-      </label>
-      <InputField
-        type="email"
-        name="email"
-        id="email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-          if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
-        }}
-        placeholder="Enter your email"
-        error={errors.email}
-        classes="mb-1.5"
-      />
-      <label
-        htmlFor="user-name"
-        className="mb-0.5 block text-[1.125rem] font-semibold"
-      >
-        User name
-      </label>
-      <InputField
-        type="text"
-        id="user-name"
-        name="user-name"
-        value={userName}
-        onChange={(e) => {
-          setUserName(e.target.value);
-          if (errors.userName) setErrors((prev) => ({ ...prev, userName: "" }));
-        }}
-        placeholder="Enter your user name"
-        error={errors.userName}
-        classes="mb-1.5"
-      />
-      <div className="mb-0.5 flex items-center justify-between">
         <label
-          htmlFor="password"
-          className="block text-[1.125rem] font-semibold"
+          htmlFor="email"
+          className="mb-0.5 block text-[1.125rem] font-semibold"
         >
-          Password
+          Email
         </label>
-        <Link to="/auth/forgot-password">Forgot Password?</Link>
-      </div>
-      <InputField
-        type="password"
-        id="password"
-        name="password"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-          if (errors.password) setErrors((prev) => ({ ...prev, password: "" }));
-        }}
-        placeholder="Enter password"
-        error={errors.password}
-        classes="mb-1.5"
-      />
-      <CheckboxWithLabel
-        checked={terms}
-        onChange={() => setTerms(!terms)}
-        label="I agree to the Terms and Conditions"
-        id="terms-checkbox"
-      />
-      {errors.terms && (
-        <p className="mt-1 text-sm text-red-500">{errors.terms}</p>
-      )}
-      {generalError && (
-        <p className="mt-1 text-sm text-red-500">{generalError}</p>
-      )}
-    </AuthModal>
+        <InputField
+          type="email"
+          name="email"
+          id="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+          }}
+          placeholder="Enter your email"
+          error={errors.email}
+          classes="mb-1.5"
+        />
+        <label
+          htmlFor="user-name"
+          className="mb-0.5 block text-[1.125rem] font-semibold"
+        >
+          User name
+        </label>
+        <InputField
+          type="text"
+          id="user-name"
+          name="user-name"
+          value={userName}
+          onChange={(e) => {
+            setUserName(e.target.value);
+            if (errors.userName)
+              setErrors((prev) => ({ ...prev, userName: "" }));
+          }}
+          placeholder="Enter your user name"
+          error={errors.userName}
+          classes="mb-1.5"
+        />
+        <div className="mb-0.5 flex items-center justify-between">
+          <label
+            htmlFor="password"
+            className="block text-[1.125rem] font-semibold"
+          >
+            Password
+          </label>
+          <Link to="/auth/forgot-password">Forgot Password?</Link>
+        </div>
+        <InputField
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            if (errors.password)
+              setErrors((prev) => ({ ...prev, password: "" }));
+          }}
+          placeholder="Enter password"
+          error={errors.password}
+          classes="mb-1.5"
+        />
+        <CheckboxWithLabel
+          checked={terms}
+          onChange={() => setTerms(!terms)}
+          label="I agree to the Terms and Conditions"
+          id="terms-checkbox"
+        />
+        {errors.terms && (
+          <p className="mt-1 text-sm text-red-500">{errors.terms}</p>
+        )}
+        {generalError && (
+          <p className="mt-1 text-sm text-red-500">{generalError}</p>
+        )}
+      </AuthModal>
+    </PageWrapper>
   );
 }

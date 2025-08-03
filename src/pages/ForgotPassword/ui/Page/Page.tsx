@@ -4,6 +4,7 @@ import { useState } from "react";
 import InputField from "@/components/Input";
 import AuthModal from "@/components/AuthModal";
 import { Link } from "react-router-dom";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -31,38 +32,40 @@ export default function ForgotPassword() {
   };
 
   return (
-    <AuthModal
-      title="Forgot Password"
-      description="Enter your email to receive a reset link"
-      buttonText={loading ? "Sending..." : "Send Reset Email"}
-      onClick={handleResetPassword}
-      buttonDisabled={isInvalid || loading}
-      bottomChildren={
-        <div className="mt-1 flex items-center justify-center">
-          Back to{" "}
-          <Link to="/auth/login" className="text-blue-600 underline ml-1">
-            Login
-          </Link>
-        </div>
-      }
-    >
-      <label
-        htmlFor="email"
-        className="mb-0.5 block text-[1.125rem] font-semibold"
+    <PageWrapper>
+      <AuthModal
+        title="Forgot Password"
+        description="Enter your email to receive a reset link"
+        buttonText={loading ? "Sending..." : "Send Reset Email"}
+        onClick={handleResetPassword}
+        buttonDisabled={isInvalid || loading}
+        bottomChildren={
+          <div className="mt-1 flex items-center justify-center">
+            Back to{" "}
+            <Link to="/auth/login" className="ml-1 text-blue-600 underline">
+              Login
+            </Link>
+          </div>
+        }
       >
-        Email
-      </label>
-      <InputField
-        type="email"
-        name="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        error={error}
-        classes="mb-1.5"
-      />
-      {message && <p className="mt-1 text-sm text-green-600">{message}</p>}
-    </AuthModal>
+        <label
+          htmlFor="email"
+          className="mb-0.5 block text-[1.125rem] font-semibold"
+        >
+          Email
+        </label>
+        <InputField
+          type="email"
+          name="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          error={error}
+          classes="mb-1.5"
+        />
+        {message && <p className="mt-1 text-sm text-green-600">{message}</p>}
+      </AuthModal>
+    </PageWrapper>
   );
 }
