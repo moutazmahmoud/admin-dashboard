@@ -3,10 +3,15 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { navItems } from "../lib/navItems";
 import NavItem from "./NavItem";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const ITEM_HEIGHT = 50;
 
 const Sidebar = () => {
+  const { logout } = useAuthStore((state) => state);
+  const handleLogout = () => {
+    logout();
+  };
   const { pathname } = useLocation();
 
   const activeIndex = navItems.findIndex((item) => item.to === pathname);
@@ -32,6 +37,7 @@ const Sidebar = () => {
         {navItems.map((item) => (
           <NavItem key={item.to} {...item} />
         ))}
+        <button onClick={handleLogout}>Logout</button>
       </ul>
     </div>
   );
