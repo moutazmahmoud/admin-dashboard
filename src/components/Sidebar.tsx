@@ -4,7 +4,7 @@ import { easeInOut, motion } from "framer-motion";
 import { navItems } from "../lib/navItems";
 import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
-import { DiUbuntu } from "react-icons/di";
+import LogoutIcon from "@/assets/icons/turn-off.svg?react";
 
 const ITEM_HEIGHT = 50;
 
@@ -41,7 +41,8 @@ const Sidebar = () => {
         {navItems.map((item) => (
           <NavItem key={item.to} {...item} />
         ))}
-        <button onClick={handleLogout}>Logout</button>
+        <div className="my-1 h-[1px] w-full bg-[#E8E8E8]"></div>
+        <NavItem onClick={handleLogout} label="Logout" Icon={LogoutIcon} />
       </ul>
     </div>
   );

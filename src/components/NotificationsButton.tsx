@@ -1,11 +1,10 @@
-import { FaBell } from "react-icons/fa";
-
+import NotificationIcon from "@/assets/icons/notification.svg?react";
 
 const NotificationsButton = () => {
   return (
     <div className="dropdown-end dropdown">
       <button tabIndex={0} className="btn-ghost btn-circle btn">
-        <FaBell />
+        <NotificationIcon />
       </button>
       <ul
         tabIndex={0}

@@ -1,5 +1,4 @@
-import {useAuthStore} from "@/store/useAuthStore";
-import { span } from "framer-motion/client";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const ProfileDropdown = () => {
   const { user } = useAuthStore();

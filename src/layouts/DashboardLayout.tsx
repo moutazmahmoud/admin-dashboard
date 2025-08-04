@@ -1,5 +1,5 @@
 // layouts/DashboardLayout.tsx
-import TopBar from "@/components/Topbar";
+import Topbar from "@/components/Topbar";
 import Sidebar from "../components/Sidebar";
 import { Outlet } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const DashboardLayout = () => {
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1">
-        <TopBar />
+        <Topbar />
         <div
           className="overflow-y-scroll h-full p-2 bg-[#F5F6FA]"
           style={{ maxHeight: "calc(100vh - 5rem)" }}
