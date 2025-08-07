@@ -1,8 +1,9 @@
 import { Deal } from "@/types/Deal";
 
-import AppleWatchImage from "../assets/images/png-clipart-apple-watch-series-3-apple-watch-series-1-apple-watch-series-2-apple-electronics-apple-watch-thumbnail.png";
-import SamsungTvImage from "../assets/images/pngegg.png";
-import MacBookProImage from "../assets/images/png-transparent-macbook-pro-laptop-apple-laptop-electronics-computer-laptop-thumbnail.png";
+import AppleWatchImage from "@/assets/images/products/watch-1.png";
+import SamsungTvImage from "@/assets/images/products/tv.png";
+import MacBookProImage from "@/assets/images/products/mac-1.png";
+import MouseImage from "@/assets/images/products/mouse-1.png";
 
 // Mock sales data
 export const salesDataByMonth: Record<string, number[]> = {
@@ -40,5 +41,15 @@ export const mockDeals: Deal[] = [
     pieces: 2,
     amount: 95000,
     status: "Cancelled",
+  },
+
+  {
+    productName: "Wireless Mouse",
+    productImageUrl: MouseImage,
+    location: "Cairo, Egypt",
+    dateTime: "2025-08-01 14:30",
+    pieces: 7,
+    amount: 1500,
+    status: "Delivered",
   },
 ];

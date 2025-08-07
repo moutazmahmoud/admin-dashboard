@@ -14,6 +14,7 @@ import {
   ScriptableContext,
   ChartTypeRegistry,
   Chart,
+  ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { salesDataByMonth } from "@/lib/MockData";
@@ -62,7 +63,7 @@ const SalesDetails: React.FC = () => {
   const data: ChartData<"line"> = useMemo(() => {
     const ctx = chartRef.current?.ctx;
 
-    let gradient: string | CanvasGradient = "rgba(2, 98, 252, 0.5)";
+    let gradient: string | CanvasGradient = GRADIENT_FROM;
     if (ctx) {
       const height = ctx.canvas.clientHeight || ctx.canvas.height;
       console.log(height);
@@ -93,7 +94,7 @@ const SalesDetails: React.FC = () => {
   }, [sales, days, isChartReady]);
 
   // Chart options
-  const options = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
@@ -102,13 +103,14 @@ const SalesDetails: React.FC = () => {
       },
       delay: (context: ScriptableContext<"line">) => {
         let delay = 0;
-        if (
-          context.type === "data" &&
-          context.mode === "default" &&
-          !delayedRef.current
-        ) {
-          delay = context.dataIndex * 80 + context.datasetIndex * 80;
-        }
+        // if (
+        //   context.type === "data" &&
+        //   context.mode === "default" &&
+        //   !delayedRef.current
+        // ) {
+        //   // delay = context.dataIndex * 90 + context.datasetIndex * 80;
+        // }
+        delay = context.dataIndex * 40 + context.datasetIndex * 60;
         return delay;
       },
     },
@@ -125,7 +127,11 @@ const SalesDetails: React.FC = () => {
           ): string {
             const num =
               typeof tickValue === "number" ? tickValue : parseFloat(tickValue);
-            return `$${num}`;
+
+            if (num === 0) {
+              return `$${num}`;
+            }
+            return `$${num / 1000}k`;
           },
         },
       },
