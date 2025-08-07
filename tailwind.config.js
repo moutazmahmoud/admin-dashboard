@@ -6,6 +6,8 @@ const spacing = {
     Array.from({ length: 30 }, (_, i) => [String(i + 1), `${i + 1}rem`]),
   ),
   // Add fractional steps
+  0.125: "0.125rem",
+  0.25: "0.25rem",
   0.5: "0.5rem",
   0.75: "0.75rem",
   1.5: "1.5rem",

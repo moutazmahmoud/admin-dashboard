@@ -66,7 +66,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               key={option.value}
               onClick={() => handleSelect(option)}
               className={` cursor-pointer px-1 py-0.5 hover:bg-gray-100 ${
-                option.value === value ? "bg-gray-100 font-medium" : ""
+                option.value === value ? "bg-gray-100 font-medium text-text" : ""
               }`}
             >
               {option.label}

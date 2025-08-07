@@ -12,6 +12,8 @@ import {
   Scale,
   CoreScaleOptions,
   ScriptableContext,
+  ChartTypeRegistry,
+  Chart,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { salesDataByMonth } from "@/lib/MockData";
@@ -31,9 +33,8 @@ console.log("Sales data by month:", salesDataByMonth);
 
 const months = Object.keys(salesDataByMonth);
 const CHART_BORDER_COLOR = "#3b82f6";
-const GRADIENT_FROM1 = "#99d6f9ff";
-// const GRADIENT_FROM2 = "rgba(2, 98, 252, 0.3)";
-const GRADIENT_TO = "white";
+const GRADIENT_FROM = "rgba(67, 121, 238, 0.36)";
+const GRADIENT_TO = "rgba(255, 255, 255, 0.1769)";
 
 const SalesDetails: React.FC = () => {
   const chartRef = useRef<ChartJS<"line"> | null>(null);
@@ -48,8 +49,6 @@ const SalesDetails: React.FC = () => {
     return { days, sales };
   }, [selectedMonth]);
 
-  // Detect when canvas is available
-
   // Prepare chart data (with fallback and gradient)
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
@@ -63,11 +62,13 @@ const SalesDetails: React.FC = () => {
   const data: ChartData<"line"> = useMemo(() => {
     const ctx = chartRef.current?.ctx;
 
-    let gradient: string | CanvasGradient = "rgba(2, 98, 252, 0.2)";
+    let gradient: string | CanvasGradient = "rgba(2, 98, 252, 0.5)";
     if (ctx) {
-      gradient = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient.addColorStop(0, GRADIENT_FROM1);
-      // gradient.addColorStop(0.8, GRADIENT_FROM2);
+      const height = ctx.canvas.clientHeight || ctx.canvas.height;
+      console.log(height);
+
+      gradient = ctx.createLinearGradient(0, 0, 0, 350);
+      gradient.addColorStop(0, GRADIENT_FROM);
       gradient.addColorStop(1, GRADIENT_TO);
     }
 
@@ -75,16 +76,17 @@ const SalesDetails: React.FC = () => {
       labels: days,
       datasets: [
         {
-          label: "Sales ($)",
+          label: "Sales",
           data: sales,
           borderColor: CHART_BORDER_COLOR,
+          borderWidth: 2,
           backgroundColor: gradient,
           fill: true,
-          tension: 0.2,
-          pointRadius: 5,
+          tension: 0.1,
+          pointRadius: 3,
           pointBackgroundColor: CHART_BORDER_COLOR,
-          pointHitRadius: 10,
-          pointHoverRadius: 10,
+          pointHitRadius: 8,
+          pointHoverRadius: 8,
         },
       ],
     };
@@ -111,7 +113,7 @@ const SalesDetails: React.FC = () => {
       },
     },
     plugins: {
-      legend: { position: "top" as const },
+      legend: { display: false },
     },
     scales: {
       y: {
@@ -129,16 +131,18 @@ const SalesDetails: React.FC = () => {
       },
       x: {
         title: {
-          display: true,
-          text: "Day of Month",
+          display: false,
+        },
+        grid: {
+          display: false, // This removes vertical grid lines
         },
       },
     },
   };
 
   return (
-    <div className="w-full rounded-xl bg-white p-2 shadow-md">
-      <div className="mb-1 flex items-center justify-between">
+    <div className="sales-details w-full rounded-xl bg-white p-2 pb-3 shadow-md">
+      <div className="mb-3 flex items-center justify-between">
         <h3 className="text-lg font-semibold">Sales Details</h3>
         <CustomSelect
           options={months.map((month) => ({ label: month, value: month }))}
@@ -148,7 +152,7 @@ const SalesDetails: React.FC = () => {
         />
       </div>
       {/* Always render the chart, it updates automatically when canvas is ready */}
-      <div className="h-[350px] w-full">
+      <div className="relative h-[350px] w-full">
         <Line ref={chartRef} data={data} options={options} />
       </div>
     </div>

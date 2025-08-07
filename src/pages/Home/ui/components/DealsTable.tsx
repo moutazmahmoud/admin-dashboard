@@ -38,8 +38,8 @@ const DealsTable: React.FC = () => {
         </thead>
         <tbody>
           {mockDeals.map((deal, idx) => (
-            <tr key={idx} className="border-b hover:bg-gray-50">
-              <td className="pl-3 py-1">
+            <tr key={idx} className="border-b hover:bg-gray-50 rounded-1">
+              <td className="pl-3 py-1 rounded-tl-1 rounded-bl-1">
                 <div className="flex items-center">
                   <img
                     className="h-[2.25rem] w-[2.25rem]"
@@ -57,7 +57,7 @@ const DealsTable: React.FC = () => {
               <td className="px-3 py-1 text-center">
                 ${deal.amount.toLocaleString()}
               </td>
-              <td className="px-3 py-1 text-center">
+              <td className="px-3 py-1 text-center rounded-tr-1 rounded-br-1">
                 <span
                   className={`rounded-full px-1 py-[0.25rem] text-xs font-medium ${getStatusColor(
                     deal.status,
