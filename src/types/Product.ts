@@ -5,4 +5,5 @@ export type Product = {
   images: string[];
   price: number;
   rating: number;
+  reviewsCount: number;
 };

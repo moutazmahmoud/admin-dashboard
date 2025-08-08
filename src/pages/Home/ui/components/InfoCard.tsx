@@ -16,21 +16,21 @@ const InfoCard = ({ title, description, change, imageUrl }: InfoCardProps) => {
   const isUp = change?.direction === "up";
 
   return (
-    <div className="card relative w-full bg-base-100 p-1 shadow-xl">
+    <div className="card relative w-full bg-base-100 p-4 shadow-xl">
       <div className="flex flex-col">
         <div>
-          <div className="mb-1 text-text/70 font-semibold">{title}</div>
+          <div className="mb-4 text-text/70 font-semibold">{title}</div>
           <div className="text-[1.75rem] font-bold">{description}</div>
         </div>
         {change && (
-          <div className="text-muted mt-2 flex items-center text-[1rem] font-semibold text-text/70">
+          <div className="text-muted mt-8 flex items-center text-[1rem] font-semibold text-text/70">
             {isUp ? (
-              <UpIcon className="h-1.5 w-1.5" />
+              <UpIcon className="h-6 w-6 " />
             ) : (
-              <DownIcon className="h-1.5 w-1.5" />
+              <DownIcon className="h-6 w-6" />
             )}
             <span
-              className={`ml-0.5 ${isUp ? "text-success" : "text-danger"}`}
+              className={`ml-2 ${isUp ? "text-success" : "text-danger"}`}
             >
               {change.percent}%
             </span>
@@ -40,7 +40,7 @@ const InfoCard = ({ title, description, change, imageUrl }: InfoCardProps) => {
           </div>
         )}
       </div>
-      <div className="absolute right-1 top-1 h-[3.75rem] w-[3.75rem] rounded-[1.5rem]">
+      <div className="absolute right-4 top-4 h-15 w-15 rounded-3xl">
         <img className="h-full w-full" src={imageUrl} alt="" />
       </div>
     </div>

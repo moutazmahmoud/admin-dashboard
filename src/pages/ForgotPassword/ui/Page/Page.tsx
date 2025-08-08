@@ -40,9 +40,9 @@ export default function ForgotPassword() {
         onClick={handleResetPassword}
         buttonDisabled={isInvalid || loading}
         bottomChildren={
-          <div className="mt-1 flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center">
             Back to{" "}
-            <Link to="/auth/login" className="ml-1 text-blue-600 underline">
+            <Link to="/auth/login" className="ml-4 text-blue-600 underline">
               Login
             </Link>
           </div>
@@ -50,7 +50,7 @@ export default function ForgotPassword() {
       >
         <label
           htmlFor="email"
-          className="mb-0.5 block text-[1.125rem] font-semibold"
+          className="mb-2 block text-[1.125rem] font-semibold"
         >
           Email
         </label>
@@ -62,7 +62,7 @@ export default function ForgotPassword() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
           error={error}
-          classes="mb-1.5"
+          classes="mb-6"
         />
         {message && <p className="mt-1 text-sm text-green-600">{message}</p>}
       </AuthModal>

@@ -19,7 +19,7 @@ const Sidebar = () => {
   const showIndicator = activeIndex !== -1;
 
   return (
-    <div className="bg-main relative h-screen w-15 p-1.5 text-center">
+    <div className="bg-main relative h-screen w-[15rem] p-6 text-center">
       <h2 className="mb-[1.875rem] text-[1.25rem] font-extrabold">
         <span className="text-primary">Dash</span>Stack
       </h2>
@@ -28,7 +28,7 @@ const Sidebar = () => {
         {/* Background highlight */}
         {showIndicator && (
           <motion.div
-            className="absolute -left-[1.78125rem] right-0 top-[0px] z-0 h-[50px] w-[0.5625rem] rounded-[0.25rem] bg-primary"
+            className="absolute -left-[1.78125rem] right-0 top-0 z-0 h-[50px] w-[0.5625rem] rounded-[0.25rem] bg-primary"
             style={{ top: activeIndex * ITEM_HEIGHT }}
             layout
             layoutId="nav-active-indicator"
@@ -41,7 +41,7 @@ const Sidebar = () => {
         {navItems.map((item) => (
           <NavItem key={item.to} {...item} />
         ))}
-        <div className="my-1 h-[1px] w-full bg-[#E8E8E8]"></div>
+        <div className="my-4 h-[1px] w-full bg-[#E8E8E8]"></div>
         <NavItem onClick={handleLogout} label="Logout" Icon={LogoutIcon} />
       </ul>
     </div>

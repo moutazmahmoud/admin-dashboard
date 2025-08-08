@@ -8,14 +8,35 @@ const ProductCard = (props: Product) => {
     <div className="rounded-lg bg-white shadow-md">
       <Slider
         slides={props.images}
-        renderSlide={(image: string) => <img src={image} alt={props.name} />}
-        height="h-20"
+        renderSlide={(image: string) => (
+          <img
+            src={image}
+            alt={props.name}
+            className="h-full w-full object-contain"
+          />
+        )}
+        height="h-[20rem]"
+        sliderButtonVariant="gray"
       />
-      <div className="p-2 flex flex-col gap-0.5">
-        <h3 className="text-[1.125rem] font-bold">{props.name}</h3>
-        <p className="text-[1rem] font-bold text-primary">${props.price}</p>
-        <Rating rating={props.rating} />
-        <Button className="mt-[0.75rem] w-min whitespace-nowrap" variant="secondary">Edit Product</Button>
+      <div className="flex flex-col gap-2 p-6">
+        <h3 className="text-[1.125rem] font-bold leading-tight">
+          {props.name}
+        </h3>
+        <p className="text-[1rem] font-bold leading-tight text-primary">
+          ${props.price.toFixed(2)}
+        </p>
+        <div className="flex h-5 items-center">
+          <Rating rating={props.rating} />
+          <div className="ml-1 text-sm text-gray-500 leading-tight pt-4">
+            ({props.reviewsCount})
+          </div>
+        </div>
+        <Button
+          className="mt-3 w-min whitespace-nowrap"
+          variant="secondary"
+        >
+          Edit Product
+        </Button>
       </div>
     </div>
   );

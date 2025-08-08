@@ -60,9 +60,9 @@ export default function Login() {
         onClick={handleLogin}
         buttonDisabled={loading || isFormInvalid}
         bottomChildren={
-          <div className="mt-1 flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center">
             Don’t have an account?
-            <Link to="/auth/register" className="ml-0.5 text-blue-600 underline">
+            <Link to="/auth/register" className="ml-2 text-blue-600 underline">
               Sign Up
             </Link>
           </div>
@@ -70,7 +70,7 @@ export default function Login() {
       >
         <label
           htmlFor="email"
-          className="mb-0.5 block text-[1.125rem] font-semibold"
+          className="mb-2 block text-[1.125rem] font-semibold"
         >
           Email
         </label>
@@ -85,10 +85,10 @@ export default function Login() {
           }}
           placeholder="Enter your email"
           error={errors.email}
-          classes="mb-1.5"
+          classes="mb-6"
         />
 
-        <div className="mb-0.5 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between">
           <label
             htmlFor="password"
             className="block text-[1.125rem] font-semibold"
@@ -109,11 +109,11 @@ export default function Login() {
           }}
           placeholder="Enter password"
           error={errors.password}
-          classes="mb-1.5"
+          classes="mb-6"
         />
 
         {generalError && (
-          <p className="mt-1 text-sm text-red-500">{generalError}</p>
+          <p className="mt-4 text-sm text-red-500">{generalError}</p>
         )}
       </AuthModal>
     </PageWrapper>

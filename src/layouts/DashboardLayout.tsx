@@ -10,7 +10,7 @@ const DashboardLayout = () => {
       <div className="flex-1">
         <Topbar />
         <div
-          className="overflow-y-scroll h-full p-2 bg-[#F5F6FA]"
+          className="overflow-y-scroll h-full p-8 bg-[#F5F6FA]"
           style={{ maxHeight: "calc(100vh - 5rem)" }}
         >
           <Outlet />

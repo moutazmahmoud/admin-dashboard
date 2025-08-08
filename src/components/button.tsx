@@ -29,7 +29,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={clsx(
-        "rounded-[0.75rem] px-1 py-0.5 text-sm font-bold transition-colors duration-200",
+        "rounded-xl px-8 py-4 text-sm font-bold transition-colors duration-200",
         variantStyles[variant],
         disabled && "cursor-not-allowed opacity-50 hover:bg-inherit",
         className,

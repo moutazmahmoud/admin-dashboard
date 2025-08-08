@@ -34,18 +34,19 @@ export default function BannerSlider() {
       slides={slides}
       renderSlide={(slide) => (
         <div className="relative h-full w-full text-white">
-          <div className="relative z-10 flex h-full flex-col justify-center py-1 text-left">
+          <div className="relative z-10 flex h-full flex-col justify-center py-4 text-left">
             <p className="text-sm">{slide.date}</p>
-            <h2 className="my-0.5 text-3xl font-bold">{slide.title}</h2>
-            <p className="mb-1 text-lg text-white/80">{slide.desc}</p>
-            <button className="w-min whitespace-nowrap rounded-[0.75rem] bg-[#FF8743] px-3 py-1 text-lg text-white">
+            <h2 className="my-2 text-3xl font-bold">{slide.title}</h2>
+            <p className="mb-4 text-lg text-white/80">{slide.desc}</p>
+            <button className="w-min whitespace-nowrap rounded-[0.75rem] bg-[#FF8743] px-12 py-4 text-lg text-white">
               {slide.cta}
             </button>
           </div>
         </div>
       )}
       hasPatternBackground={true}
-      height="h-80"
+      height="h-[21.5rem]"
+      hasBackgroundXMask={true}
     />
   );
 }

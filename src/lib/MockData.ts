@@ -72,6 +72,7 @@ export const products: Product[] = [
     images: [AppleWatchImage1, AppleWatchImage2, AppleWatchImage3],
     price: 499,
     rating: 4.8,
+    reviewsCount: 134,
   },
   {
     id: 2,
@@ -81,6 +82,7 @@ export const products: Product[] = [
     images: [SamsungTvImage, SamsungTvImage, SamsungTvImage],
     price: 999,
     rating: 4,
+    reviewsCount: 105,
   },
   {
     id: 3,
@@ -90,6 +92,7 @@ export const products: Product[] = [
     images: [MacBookProImage1, MacBookProImage2, MacBookProImage3],
     price: 1999,
     rating: 4.5,
+    reviewsCount: 209,
   },
   {
     id: 4,
@@ -99,5 +102,6 @@ export const products: Product[] = [
     images: [MouseImage1, MouseImage2, MouseImage3],
     price: 799,
     rating: 3.5,
+    reviewsCount: 12,
   },
 ];

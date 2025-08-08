@@ -14,16 +14,16 @@ const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
   const { pathname } = useLocation();
   const isActive = to ? pathname === to : false;
 
-  const commonClasses = `relative z-10 flex items-center gap-1 px-1 py-[0.8125rem] text-[0.875rem] font-semibold transition-colors duration-200 ease-in-out ${
+  const commonClasses = `relative z-10 flex items-center gap-4 px-4 py-[0.8125rem] text-[0.875rem] font-semibold transition-colors duration-200 ease-in-out ${
     isActive ? "fill-white text-white" : "fill-text text-text"
   }`;
 
   return (
-    <li className="relative overflow-hidden rounded-0.75">
+    <li className="relative overflow-hidden rounded-[0.75rem]">
       {isActive && (
         <motion.div
           layoutId="nav-active-bg"
-          className="absolute inset-0 z-0 rounded-0.75 bg-primary"
+          className="absolute inset-0 z-0 rounded-[0.75rem] bg-primary"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
@@ -33,7 +33,7 @@ const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
 
       {to ? (
         <Link to={to} className={commonClasses}>
-          <Icon className="h-1.5 w-1.5" />
+          <Icon className="h-6 w-6" />
           {label}
         </Link>
       ) : (
@@ -41,7 +41,7 @@ const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
           onClick={onClick}
           className={`${commonClasses} w-full text-left`}
         >
-          <Icon className="h-1.5 w-1.5" />
+          <Icon className="h-6 w-6" />
           {label}
         </button>
       )}

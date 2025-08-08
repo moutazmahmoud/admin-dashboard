@@ -21,19 +21,19 @@ const AuthModal = ({
   buttonDisabled,
 }: AuthModalProps) => {
   return (
-    <div className="min-w-[39.375rem] rounded-3xl bg-white px-2 py-3">
+    <div className="min-w-[39.375rem] rounded-3xl bg-white px-8 py-12">
       {title && (
         <h3 className="text-center text-[2rem] font-bold text-text">{title}</h3>
       )}
       {description && (
-        <p className="mt-1 text-center text-[1.125rem] font-semibold text-text/80 mb-2.5">
+        <p className="mt-4 text-center text-[1.125rem] font-semibold text-text/80 mb-10">
           {description}
         </p>
       )}
       {children}
 
-      <div className="mt-1 px-2">
-        <Button onClick={onClick} classes="w-full" disabled={buttonDisabled}>
+      <div className="mt-4 px-8">
+        <Button onClick={onClick} className="w-full" disabled={buttonDisabled}>
           {buttonText}
         </Button>
       </div>

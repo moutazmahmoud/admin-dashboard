@@ -5,19 +5,24 @@ import PatternImg from "@/assets/images/pattern.png";
 import "./Slider.css";
 
 export type Direction = "left" | "right";
+export type SliderButtonVariant = "white" | "gray";
 
 type SliderProps<T> = {
   slides: T[];
   renderSlide: (item: T) => React.ReactNode;
   height?: string; // optional height
   hasPatternBackground?: boolean;
+  hasBackgroundXMask?: boolean;
+  sliderButtonVariant?: SliderButtonVariant;
 };
 
 export default function Slider<T>({
   slides,
   renderSlide,
-  height = "h-80",
+  height = "h-[21.5rem]",
   hasPatternBackground = false,
+  hasBackgroundXMask = false,
+  sliderButtonVariant = "white",
 }: SliderProps<T>) {
   const [[index, direction], setIndex] = useState<[number, Direction]>([
     0,
@@ -52,9 +57,9 @@ export default function Slider<T>({
 
   return (
     <div
-      className={`relative h-80 w-full overflow-hidden rounded-lg ${
-        hasPatternBackground ? "bg-primary text-white" : ""
-      }  ${height}`}
+      className={`relative w-full overflow-hidden rounded-lg ${
+        hasPatternBackground ? "bg-primary text-white " : ""
+      } ${height}`}
     >
       {hasPatternBackground && (
         <div
@@ -63,7 +68,11 @@ export default function Slider<T>({
         ></div>
       )}
 
-      <div className="mask-gradient mx-auto h-full w-[92%]">
+      <div
+        className={` ${
+          hasBackgroundXMask ? "mask-gradient mx-auto h-full w-[92%]" : ""
+        }`}
+      >
         <AnimatePresence custom={direction}>
           <motion.div
             key={index}
@@ -73,7 +82,7 @@ export default function Slider<T>({
             animate="center"
             exit="exit"
             transition={{ duration: 0.5 }}
-            className="absolute flex h-full w-full flex-col justify-center px-5 py-1 text-left"
+            className="absolute flex h-full w-full flex-col justify-center px-20 py-4 text-left"
           >
             {renderSlide(slides[index])}
           </motion.div>
@@ -81,17 +90,19 @@ export default function Slider<T>({
       </div>
 
       <SliderButton
-        classes="left-1.5"
+        classes="left-6"
         icon={<ChevronLeft />}
         direction="left"
         paginate={paginate}
+        sliderButtonVariant={sliderButtonVariant}
       />
 
       <SliderButton
-        classes="right-1.5"
+        classes="right-6"
         icon={<ChevronRight />}
         direction="right"
         paginate={paginate}
+        sliderButtonVariant={sliderButtonVariant}
       />
     </div>
   );
@@ -102,6 +113,7 @@ type SliderButtonProps = {
   icon: React.ReactNode;
   direction: "left" | "right";
   paginate: (dir: "left" | "right") => void;
+  sliderButtonVariant?: SliderButtonVariant;
 };
 
 const SliderButton: React.FC<SliderButtonProps> = ({
@@ -109,10 +121,14 @@ const SliderButton: React.FC<SliderButtonProps> = ({
   icon,
   direction,
   paginate,
+  sliderButtonVariant,
 }) => {
   return (
     <button
-      className={`absolute top-1/2 -translate-y-1/2 scale-100 rounded-full bg-[rgba(244,244,244,0.73)] p-[0.25rem] text-[#363636] transition-all duration-200 ease-in-out hover:scale-105 hover:bg-white ${classes}`}
+      className={`absolute top-1/2 -translate-y-1/2 scale-100 rounded-full bg-[rgba(244,244,244,0.73)] p-1 text-[#363636] transition-all duration-200 ease-in-out hover:scale-105  
+        ${classes} ${
+        sliderButtonVariant === "white" ? "hover:bg-white" : "hover:bg-gray-200"
+      }`}
       onClick={() => paginate(direction)}
     >
       {icon}

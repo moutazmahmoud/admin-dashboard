@@ -8,7 +8,7 @@ const Home: FC = () => {
   return (
     <PageWrapper>
       <section>
-        <div className="hero relative flex min-h-full flex-col gap-2">
+        <div className="hero relative flex min-h-full flex-col gap-8">
           <DashboardCards />
           <SalesDetails />
           <DealsTable />

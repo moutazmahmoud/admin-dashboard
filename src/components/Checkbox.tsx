@@ -19,7 +19,7 @@ const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
       className="relative flex cursor-pointer items-center gap-[0.75rem]"
       htmlFor={id}
     >
-      <div className="relative h-1.5 w-1.5 rounded-[0.375rem] border-[1px] border-[#A3A3A3] peer-checked:border-blue-600">
+      <div className="relative h-6 w-6 rounded-[0.375rem] border-[1px] border-[#A3A3A3] peer-checked:border-blue-600">
         <input
           id={id}
           type="checkbox"
@@ -28,9 +28,9 @@ const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
           className="peer absolute inset-0 opacity-0"
         />
         <div
-          className={`pointer-events-none absolute inset-0 flex flex h-1.5 w-1.5 items-center items-center justify-center justify-center opacity-0 peer-checked:opacity-100`}
+          className={`pointer-events-none absolute inset-0 flex h-6 w-6  items-center justify-center opacity-0 peer-checked:opacity-100`}
         >
-          <CheckMarkIcon className=" h-0.75 w-0.75 text-white " />
+          <CheckMarkIcon className=" h-3 w-3 text-white " />
         </div>
       </div>
       {label && <span className="text-sm">{label}</span>}

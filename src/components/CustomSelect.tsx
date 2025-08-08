@@ -44,14 +44,14 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   return (
     <div ref={ref} className="relative min-w-[6.5rem] text-text/50">
       <div
-        className="flex cursor-pointer items-center justify-between rounded-[0.25rem] border border-[#D5D5D5] bg-[#FCFDFD] px-0.75 py-[0.375] text-center  font-semibold"
+        className="flex cursor-pointer items-center justify-between rounded-[0.25rem] border border-[#D5D5D5] bg-[#FCFDFD] px-3 py-[0.375] text-center font-semibold"
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedOption?.label || (
           <span>{placeholder}</span>
         )}
 
-        <span className="ml-0.5">
+        <span className="ml-2">
           <ChevronDownIcon
             className={`h-[0.625rem] w-[0.625rem] transition-transform duration-200 ease-in-out ${
               isOpen ? "rotate-180" : ""
@@ -60,12 +60,12 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         </span>
       </div>
       {isOpen && (
-        <div className="absolute z-10 mt-2 w-full rounded-md border bg-white shadow-lg">
+        <div className="absolute z-10 mt-8 w-full rounded-md border bg-white shadow-lg">
           {options.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
-              className={` cursor-pointer px-1 py-0.5 hover:bg-gray-200 ${
+              className={` cursor-pointer px-4 py-2 hover:bg-gray-200 ${
                 option.value === value ? "bg-gray-100 font-medium text-text" : ""
               }`}
             >
