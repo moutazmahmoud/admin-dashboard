@@ -1,13 +1,13 @@
 import PageWrapper from "@/components/PageWrapper";
 import { FC } from "react";
-import Slider from "./components/Slider";
+import BannerSlider from "./components/BannerSlider";
 
 const Products: FC = () => {
   return (
     <PageWrapper>
       <section>
         <div className="">
-          <Slider />
+          <BannerSlider />
         </div>
       </section>
     </PageWrapper>

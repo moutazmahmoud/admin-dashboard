@@ -103,14 +103,14 @@ const SalesDetails: React.FC = () => {
       },
       delay: (context: ScriptableContext<"line">) => {
         let delay = 0;
-        // if (
-        //   context.type === "data" &&
-        //   context.mode === "default" &&
-        //   !delayedRef.current
-        // ) {
-        //   // delay = context.dataIndex * 90 + context.datasetIndex * 80;
-        // }
-        delay = context.dataIndex * 40 + context.datasetIndex * 60;
+        if (
+          context.type === "data" &&
+          context.mode === "default" &&
+          !delayedRef.current
+        ) {
+          delay = context.dataIndex * 90 + context.datasetIndex * 80;
+        }
+        // delay = context.dataIndex * 40 + context.datasetIndex * 60;
         return delay;
       },
     },
