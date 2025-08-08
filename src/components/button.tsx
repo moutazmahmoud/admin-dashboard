@@ -4,22 +4,35 @@ type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  classes?: string;
+  variant?: Variant;
+  className?: string; // changed from "classes" to match common React naming
+  type?: "button" | "submit" | "reset";
 };
+type Variant = "primary" | "secondary" | "danger";
 
+const variantStyles: Record<Variant, string> = {
+  primary: "bg-primary text-white hover:bg-primary/90",
+  secondary: "bg-[#E2EAF8] text-text hover:bg-gray-300",
+  danger: "bg-red-500 text-white hover:bg-red-600",
+};
 export default function Button({
   children,
   onClick,
-  classes,
-  disabled,
+  disabled = false,
+  variant = "primary",
+  className,
+  type = "button",
 }: ButtonProps) {
   return (
     <button
+      type={type}
       onClick={onClick}
+      disabled={disabled}
       className={clsx(
-        "rounded-0.5 px-1.5 py-1 text-[1.25rem] font-bold text-white",
-        disabled ? "bg-[#b2c3e9]" : "bg-primary",
-        classes,
+        "rounded-[0.75rem] px-1 py-0.5 text-sm font-bold transition-colors duration-200",
+        variantStyles[variant],
+        disabled && "cursor-not-allowed opacity-50 hover:bg-inherit",
+        className,
       )}
     >
       {children}
