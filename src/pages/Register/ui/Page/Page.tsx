@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "@/firebase/firebase";
+import { updateProfile } from "firebase/auth";
+
 import { useAuthStore } from "@/store/useAuthStore";
 import { useState } from "react";
 import InputField from "@/components/Input";
@@ -7,6 +7,7 @@ import AuthModal from "@/components/AuthModal";
 import CheckboxWithLabel from "@/components/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import PageWrapper from "@/components/PageWrapper";
+import { registerUser } from "@/services/authService";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -57,11 +58,8 @@ export default function Register() {
     }
     setLoading(true);
     try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
+      const result = await registerUser(email, password);
+
       await updateProfile(result.user, {
         displayName: userName,
       });

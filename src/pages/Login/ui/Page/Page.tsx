@@ -1,11 +1,11 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase/firebase";
+
 import { useAuthStore } from "@/store/useAuthStore";
 import { useState } from "react";
 import InputField from "@/components/Input";
 import AuthModal from "@/components/AuthModal";
 import { Link, useNavigate } from "react-router-dom";
 import PageWrapper from "@/components/PageWrapper";
+import { loginUser } from "@/services/authService";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -41,9 +41,9 @@ export default function Login() {
 
     setLoading(true);
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
+      const result = await loginUser(email, password);
       setUser(result.user);
-      navigate("/"); // redirect to dashboard or homepage
+      navigate("/"); // redirect to dashboard
     } catch (err: any) {
       setGeneralError(err.message || "Login error");
     } finally {

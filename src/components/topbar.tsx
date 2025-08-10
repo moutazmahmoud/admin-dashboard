@@ -1,5 +1,5 @@
 import Searchbar from "./Searchbar";
-import LanguageSelector from "./languageSelector";
+import LanguageSelector from "./LanguageSelector";
 import NotificationsButton from "./NotificationsButton";
 import ProfileDropdown from "./ProfileDropdown";
 

@@ -2,10 +2,10 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { ChevronDown } from "lucide-react";
 
 const ProfileDropdown = () => {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
   return (
-    <div className="dropdown dropdown-end flex items-center gap-4">
-      <div className="h-12 w-12 rounded-full overflow-hidden">
+    <div className="dropdown-end dropdown flex items-center gap-4">
+      <div className="h-12 w-12 overflow-hidden rounded-full">
         <img src="https://i.pravatar.cc/300" alt="User avatar" />
       </div>
       <div className="flex flex-col">
@@ -13,8 +13,8 @@ const ProfileDropdown = () => {
         <span>Admin</span>
       </div>
 
-      <button className="w-[1.125rem] h-[1.125rem] btn p-0 min-h-[1.125rem]">
-        <ChevronDown className="h-2 w-2 relative" />
+      <button className="btn h-[1.125rem] min-h-[1.125rem] w-[1.125rem] p-0">
+        <ChevronDown className="relative h-2 w-2" />
       </button>
       <ul
         tabIndex={0}

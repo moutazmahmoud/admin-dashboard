@@ -15,30 +15,34 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AnimatePresence } from "framer-motion";
+import GlobalModal from "./components/GlobalModal";
 
 const App: FC = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<DashboardLayout />}>
-            <Route index element={<Home />} />
-            <Route path="products" element={<Products />} />
-            <Route path="favorites" element={<Favorites />} />
-            <Route path="order-lists" element={<OrderLists />} />
-            <Route path="product-stock" element={<ProductsStock />} />
-            <Route path="*" element={<NoMatch />} />
+    <>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<DashboardLayout />}>
+              <Route index element={<Home />} />
+              <Route path="products" element={<Products />} />
+              <Route path="favorites" element={<Favorites />} />
+              <Route path="order-lists" element={<OrderLists />} />
+              <Route path="product-stock" element={<ProductsStock />} />
+              <Route path="*" element={<NoMatch />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-        </Route>
-      </Routes>
-    </AnimatePresence>
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+          </Route>
+        </Routes>
+      </AnimatePresence>
+      <GlobalModal />
+    </>
   );
 };
 

@@ -5,14 +5,27 @@ import { navItems } from "../lib/navItems";
 import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
 import LogoutIcon from "@/assets/icons/turn-off.svg?react";
+import { useModalStore } from "@/store/modalStore";
 
 const ITEM_HEIGHT = 50;
 
 const Sidebar = () => {
   const { logout } = useAuthStore((state) => state);
+  const openModal = useModalStore((state) => state.openModal);
+
   const handleLogout = () => {
-    logout();
+    openModal({
+      type: "logout",
+      title: "Confirm Logout",
+      content: "Are you sure you want to log out?",
+      confirmText: "Logout",
+      onConfirm: () => {
+        console.log("User logged out");
+        logout();
+      },
+    });
   };
+
   const { pathname } = useLocation();
 
   const activeIndex = navItems.findIndex((item) => item.to === pathname);
