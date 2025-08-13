@@ -32,7 +32,7 @@ const Sidebar = () => {
   const showIndicator = activeIndex !== -1;
 
   return (
-    <div className="bg-main relative h-screen w-[15rem] p-6 text-center">
+    <div className="bg-main relative h-screen w-[15rem] min-w-[15rem] p-6 text-center">
       <h2 className="mb-[1.875rem] text-[1.25rem] font-extrabold">
         <span className="text-primary">Dash</span>Stack
       </h2>

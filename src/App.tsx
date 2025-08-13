@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
   Home,
@@ -17,37 +17,62 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import { AnimatePresence } from "framer-motion";
 import GlobalModal from "./components/GlobalModal";
 import { useAuthStore } from "./store/useAuthStore";
+import SplashLoader from "./components/SplashLoader";
 
 const App: FC = () => {
+  const { isAuthResolved, initAuthListener } = useAuthStore();
+  const [showLoader, setShowLoader] = useState(true);
   const location = useLocation();
-  const initAuthListener = useAuthStore((s) => s.initAuthListener);
 
+  // Initialize auth state once
   useEffect(() => {
     initAuthListener();
   }, [initAuthListener]);
 
+  // When auth is resolved, hide splash after min duration
+  useEffect(() => {
+    if (isAuthResolved) {
+      setShowLoader(false);
+    }
+  }, [isAuthResolved]);
+
   return (
     <>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<DashboardLayout />}>
-              <Route index element={<Home />} />
-              <Route path="products" element={<Products />} />
-              <Route path="favorites" element={<Favorites />} />
-              <Route path="order-lists" element={<OrderLists />} />
-              <Route path="product-stock" element={<ProductsStock />} />
-              <Route path="*" element={<NoMatch />} />
-            </Route>
-          </Route>
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-          </Route>
-        </Routes>
-      </AnimatePresence>
-      <GlobalModal />
+      <SplashLoader
+        open={showLoader}
+        minDuration={1000}
+        onFinish={() => setShowLoader(false)}
+      />
+
+      {/* Only render routes when splash loader is gone */}
+      {!showLoader && (
+        <>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              {/* Protected dashboard */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<DashboardLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path="products" element={<Products />} />
+                  <Route path="favorites" element={<Favorites />} />
+                  <Route path="order-lists" element={<OrderLists />} />
+                  <Route path="product-stock" element={<ProductsStock />} />
+                  <Route path="*" element={<NoMatch />} />
+                </Route>
+              </Route>
+
+              {/* Auth routes */}
+              <Route path="/auth" element={<AuthLayout />}>
+                <Route path="register" element={<Register />} />
+                <Route path="login" element={<Login />} />
+                <Route path="forgot-password" element={<ForgotPassword />} />
+              </Route>
+            </Routes>
+          </AnimatePresence>
+
+          <GlobalModal />
+        </>
+      )}
     </>
   );
 };
