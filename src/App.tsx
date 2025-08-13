@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
   Home,
@@ -16,9 +16,15 @@ import AuthLayout from "./layouts/AuthLayout";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AnimatePresence } from "framer-motion";
 import GlobalModal from "./components/GlobalModal";
+import { useAuthStore } from "./store/useAuthStore";
 
 const App: FC = () => {
   const location = useLocation();
+  const initAuthListener = useAuthStore((s) => s.initAuthListener);
+
+  useEffect(() => {
+    initAuthListener();
+  }, [initAuthListener]);
 
   return (
     <>
