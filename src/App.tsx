@@ -18,6 +18,7 @@ import { AnimatePresence } from "framer-motion";
 import GlobalModal from "./components/GlobalModal";
 import { useAuthStore } from "./store/useAuthStore";
 import SplashLoader from "./components/SplashLoader";
+import Todos from "./pages/Todos";
 
 const App: FC = () => {
   const { isAuthResolved, initAuthListener } = useAuthStore();
@@ -57,6 +58,7 @@ const App: FC = () => {
                   <Route path="favorites" element={<Favorites />} />
                   <Route path="order-lists" element={<OrderLists />} />
                   <Route path="product-stock" element={<ProductsStock />} />
+                  <Route path="todos" element={<Todos />} />
                   <Route path="*" element={<NoMatch />} />
                 </Route>
               </Route>

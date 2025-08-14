@@ -5,7 +5,7 @@ import { navItems } from "../lib/navItems";
 import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
 import LogoutIcon from "@/assets/icons/turn-off.svg?react";
-import { useModalStore } from "@/store/modalStore";
+import { useModalStore } from "@/store/useModalStore";
 
 const ITEM_HEIGHT = 50;
 
