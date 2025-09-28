@@ -12,8 +12,6 @@ import {
   Scale,
   CoreScaleOptions,
   ScriptableContext,
-  ChartTypeRegistry,
-  Chart,
   ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";

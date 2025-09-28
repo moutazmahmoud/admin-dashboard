@@ -1,7 +1,6 @@
 // layouts/DashboardLayout.tsx
 import { Outlet } from "react-router-dom";
 import AuthBackground from "@/assets/images/Shape.png";
-import AuthModal from "@/components/AuthModal";
 
 const AuthLayout = () => {
   return (

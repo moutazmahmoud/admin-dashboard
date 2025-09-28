@@ -1,5 +1,5 @@
 // src/types/todo.ts
-import { Timestamp, FieldValue } from "firebase/firestore";
+import { FieldValue } from "firebase/firestore";
 
 export type Todo = {
   id: string;
