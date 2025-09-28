@@ -1,12 +1,14 @@
 import { useAuthStore } from "@/store/useAuthStore";
 import { ChevronDown } from "lucide-react";
+import ProfileImg from "@/assets/images/empty-avatar.jpg";
 
 const ProfileDropdown = () => {
   const user = useAuthStore((state) => state.user);
   return (
     <div className="dropdown-end dropdown flex items-center gap-4">
       <div className="h-12 w-12 overflow-hidden rounded-full">
-        <img src="https://i.pravatar.cc/300" alt="User avatar" />
+        <img src={ProfileImg} alt="User avatar" />
+
       </div>
       <div className="flex flex-col">
         {user && <span>{user.displayName}</span>}
