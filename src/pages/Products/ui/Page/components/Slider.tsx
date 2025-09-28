@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import PatternImg from "@/assets/images/pattern.png";
+import PatternImg from "@/assets/images/Pattern.png";
 import "./Slider.css";
 
 export type Direction = "left" | "right";
