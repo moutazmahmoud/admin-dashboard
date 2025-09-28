@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModalStore } from "@/store/useModalStore";
-import Button from "./Button";
+import Button from "@/components/Button";
 
 const backdropVariants = {
   hidden: { opacity: 0 },
