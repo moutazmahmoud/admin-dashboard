@@ -6,6 +6,7 @@ import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
 import LogoutIcon from "@/assets/icons/turn-off.svg?react";
 import { useModalStore } from "@/store/useModalStore";
+import Logo from "@/assets/images/logo.png";
 
 const ITEM_HEIGHT = 50;
 
@@ -34,7 +35,8 @@ const Sidebar = () => {
   return (
     <div className="bg-main relative h-screen w-[15rem] min-w-[15rem] p-6 text-center">
       <h2 className="mb-[1.875rem] text-[1.25rem] font-extrabold">
-        <span className="text-primary">Dash</span>Stack
+        <img src={Logo} alt="logo" className="w-full" />
+        {/* <span className="text-primary">Dash</span>Stack */}
       </h2>
 
       <ul className="relative z-10">
