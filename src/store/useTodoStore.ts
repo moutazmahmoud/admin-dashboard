@@ -1,6 +1,6 @@
 // src/store/useTodosStore.ts
 import { create } from "zustand";
-import { addTodo, removeTodo, toggleTodo, updateTodoText } from "@/pages/Todos/api";
+import { subscribeToMyTodos, addTodo, removeTodo, toggleTodo, updateTodoText } from "@/pages/Todos/api";
 import type { Todo } from "@/types/todo";
 import { useAuthStore } from "./useAuthStore";
 
@@ -31,17 +31,18 @@ export const useTodosStore = create<TodosState>((set) => ({
 
     set({ loading: true });
 
-    // const unsub = subscribeToMyTodos(
-    //   user.uid,
-    //   (data) => set({ todos: data, loading: false }),
-    //   (err) => {
-    //     console.error("Todos subscription error:", err);
-    //     set({ loading: false });
-    //   }
-    // );
+    const unsub = subscribeToMyTodos(
+      user.uid,
+      (data) => set({ todos: data, loading: false }),
+      (err) => {
+        console.error("Todos subscription error:", err);
+        set({ loading: false });
+      }
+    );
 
     // Optional: store unsubscribe function for cleanup
     // We can add this if you want to stop the listener on logout
+    void unsub;
   },
 
   add: async (text) => {
