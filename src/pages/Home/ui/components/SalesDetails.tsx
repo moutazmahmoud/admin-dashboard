@@ -145,7 +145,7 @@ const SalesDetails: React.FC = () => {
   };
 
   return (
-    <div className="sales-details w-full rounded-xl bg-white p-8 pb-12 shadow-md">
+    <div className="sales-details w-full rounded-xl bg-white p-8 pb-12 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
       <div className="mb-12 flex items-center justify-between">
         <h3 className="text-lg font-semibold">Sales Details</h3>
         <CustomSelect

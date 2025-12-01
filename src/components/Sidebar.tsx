@@ -10,7 +10,11 @@ import Logo from "@/assets/images/logo.png";
 
 const ITEM_HEIGHT = 50;
 
-const Sidebar = () => {
+interface SidebarProps {
+  isExpanded: boolean;
+}
+
+const Sidebar = ({ isExpanded }: SidebarProps) => {
   const { logout } = useAuthStore((state) => state);
   const openModal = useModalStore((state) => state.openModal);
 
@@ -33,10 +37,13 @@ const Sidebar = () => {
   const showIndicator = activeIndex !== -1;
 
   return (
-    <div className="bg-main relative h-screen w-[15rem] min-w-[15rem] p-6 text-center">
-      <h2 className="mb-[1.875rem] text-[1.25rem] font-extrabold">
+    <div
+      className={`bg-main relative h-screen p-6 text-center overflow-hidden ${
+        isExpanded ? "w-[15rem] min-w-[15rem]" : "w-[7rem] min-w-[7rem]"
+      }`}
+    >
+      <h2 className="mb-7 w-48 text-lg font-extrabold">
         <img src={Logo} alt="logo" className="w-full" />
-        {/* <span className="text-primary">Dash</span>Stack */}
       </h2>
 
       <ul className="relative z-10">
@@ -54,10 +61,15 @@ const Sidebar = () => {
           />
         )}
         {navItems.map((item) => (
-          <NavItem key={item.to} {...item} />
+          <NavItem key={item.to} {...item} isExpanded={isExpanded} />
         ))}
         <div className="my-4 h-[1px] w-full bg-[#E8E8E8]"></div>
-        <NavItem onClick={handleLogout} label="Logout" Icon={LogoutIcon} />
+        <NavItem
+          onClick={handleLogout}
+          label="Logout"
+          Icon={LogoutIcon}
+          isExpanded={isExpanded}
+        />
       </ul>
     </div>
   );

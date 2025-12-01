@@ -74,16 +74,7 @@ export const mockProducts: Product[] = [
     rating: 4.8,
     reviewsCount: 134,
   },
-  {
-    id: 2,
-    name: "Samsung TV",
-    description:
-      "The Samsung TV is a high-end television that offers a range of features, including 4K resolution, HDR, and voice assistants.",
-    images: [SamsungTvImage, SamsungTvImage, SamsungTvImage],
-    price: 999,
-    rating: 4,
-    reviewsCount: 105,
-  },
+
   {
     id: 3,
     name: "MacBook Pro",
@@ -104,16 +95,7 @@ export const mockProducts: Product[] = [
     rating: 3.5,
     reviewsCount: 12,
   },
-  {
-    id: 5,
-    name: "Apple Watch",
-    description:
-      "The Apple Watch is a smartwatch that offers a range of features, including fitness tracking, GPS navigation, and voice assistants.",
-    images: [AppleWatchImage1, AppleWatchImage2, AppleWatchImage3],
-    price: 499,
-    rating: 4.8,
-    reviewsCount: 134,
-  },
+ 
   {
     id: 6,
     name: "Samsung TV",
@@ -123,25 +105,5 @@ export const mockProducts: Product[] = [
     price: 999,
     rating: 4,
     reviewsCount: 105,
-  },
-  {
-    id: 7,
-    name: "MacBook Pro",
-    description:
-      "The MacBook Pro is a powerful laptop that offers a range of features, including Retina display, Thunderbolt, and Apple Pencil.",
-    images: [MacBookProImage1, MacBookProImage2, MacBookProImage3],
-    price: 1999,
-    rating: 4.5,
-    reviewsCount: 209,
-  },
-  {
-    id: 8,
-    name: "Wireless Mouse",
-    description:
-      "The Wireless Mouse is a portable mouse that offers a range of features, including Bluetooth connectivity, customizable buttons, and customizable settings.",
-    images: [MouseImage1, MouseImage2, MouseImage3],
-    price: 799,
-    rating: 3.5,
-    reviewsCount: 12,
   },
 ];

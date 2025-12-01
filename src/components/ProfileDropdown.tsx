@@ -6,17 +6,17 @@ const ProfileDropdown = () => {
   const user = useAuthStore((state) => state.user);
   return (
     <div className="dropdown-end dropdown flex items-center gap-4">
-      <div className="h-12 w-12 overflow-hidden rounded-full">
+      <div className="h-11 w-11 overflow-hidden rounded-full">
         <img src={ProfileImg} alt="User avatar" />
 
       </div>
       <div className="flex flex-col">
-        {user && <span>{user.displayName}</span>}
-        <span>Admin</span>
+        {user && <span className="font-bold text-sm">{user.displayName}</span>}
+        <span className="font-semibold text-xs">Admin</span>
       </div>
 
-      <button className="btn h-[1.125rem] min-h-[1.125rem] w-[1.125rem] p-0">
-        <ChevronDown className="relative h-2 w-2" />
+      <button className="btn h-6 w-6 p-0 rounded-full min-h-6">
+        <ChevronDown className="relative h-4 w-4" />
       </button>
       <ul
         tabIndex={0}

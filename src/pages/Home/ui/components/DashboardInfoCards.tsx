@@ -7,7 +7,7 @@ import PendingIcon from "../../../../assets/icons/pending-icon.svg";
 const cardData = [
   {
     title: "Total Users",
-    description: "12,500",
+    stats: 12500,
     imageUrl: usersIcon,
     change: {
       percent: 8.5,
@@ -17,7 +17,7 @@ const cardData = [
   },
   {
     title: "Visitors",
-    description: "2,800",
+    stats: 2800,
     imageUrl: ordersIcon,
     change: {
       percent: 3.2,
@@ -27,7 +27,7 @@ const cardData = [
   },
   {
     title: "Orders",
-    description: "320",
+    stats: 320,
     imageUrl: SalesIcon,
     change: {
       percent: 6.7,
@@ -37,7 +37,8 @@ const cardData = [
   },
   {
     title: "Revenue",
-    description: "$27,300",
+    stats: 27300,
+    statsPerfix: "$",
     imageUrl: PendingIcon,
     change: {
       percent: 2.1,

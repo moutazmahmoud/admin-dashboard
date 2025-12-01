@@ -19,6 +19,8 @@ import GlobalModal from "./components/GlobalModal";
 import { useAuthStore } from "./store/useAuthStore";
 import SplashLoader from "./components/SplashLoader";
 import Todos from "./pages/Todos";
+import Analytics from "./pages/Analytics/ui/Page/Page";
+import { ProductDetails } from "./pages/ProductDetails";
 
 const App: FC = () => {
   const { isAuthResolved, initAuthListener } = useAuthStore();
@@ -49,13 +51,15 @@ const App: FC = () => {
       {!showLoader && (
         <>
           <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
+            <Routes location={location} >
               {/* Protected dashboard */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<DashboardLayout />}>
                   <Route index element={<Home />} />
                   <Route path="products" element={<Products />} />
                   <Route path="favorites" element={<Favorites />} />
+                  <Route path="analytics" element={<Analytics />} />
+                  <Route path="/products/:id" element={<ProductDetails />} />
                   <Route path="order-lists" element={<OrderLists />} />
                   <Route path="product-stock" element={<ProductsStock />} />
                   <Route path="todos" element={<Todos />} />

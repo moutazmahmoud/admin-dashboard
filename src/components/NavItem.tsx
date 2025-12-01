@@ -8,9 +8,10 @@ interface NavItemProps {
   onClick?: () => void;
   label: string;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  isExpanded: boolean;
 }
 
-const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
+const NavItem = ({ to, onClick, label, Icon, isExpanded }: NavItemProps) => {
   const { pathname } = useLocation();
   const isActive = to ? pathname === to : false;
 
@@ -34,7 +35,7 @@ const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
       {to ? (
         <Link to={to} className={commonClasses}>
           <Icon className="h-6 w-6" />
-          {label}
+          <span className={isExpanded ? "" : "hidden"}>{label}</span>
         </Link>
       ) : (
         <button
@@ -42,7 +43,7 @@ const NavItem = ({ to, onClick, label, Icon }: NavItemProps) => {
           className={`${commonClasses} w-full text-left`}
         >
           <Icon className="h-6 w-6" />
-          {label}
+          <span className={isExpanded ? "" : "hidden"}>{label}</span>
         </button>
       )}
     </li>
