@@ -48,13 +48,13 @@ export function generateDoughnutData(range: string) {
 
 export function generateKPIs(range: string) {
   const totalRevenue = range === 'today' ? rand(300,1200) : range === 'week' ? rand(3000,12000) : rand(15000,80000);
-  const todaysRevenue = range === 'today' ? totalRevenue : Math.floor(totalRevenue * 0.12);
+  const totalSales =  Math.floor(totalRevenue * 8);
   const totalOrders = Math.floor(totalRevenue / rand(10,30));
   const aov = Math.round(totalRevenue / Math.max(1,totalOrders));
 
   return {
     totalRevenue,
-    todaysRevenue,
+    todaysRevenue: totalSales,
     totalOrders,
     aov,
     revenueGrowth: `+${rand(2,18)}%`,

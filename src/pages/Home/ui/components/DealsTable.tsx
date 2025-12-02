@@ -100,7 +100,7 @@ export default function DealsTable() {
 
         <tbody>
           {sortedDeals.map((deal, idx) => (
-            <tr key={idx} className="rounded-2xl border-b hover:bg-gray-50">
+            <tr key={idx} className="rounded-2xl border-b hover:border-transparent hover:bg-gray-50">
               <td className="rounded-bl-2xl rounded-tl-2xl py-4 pl-12">
                 <div className="flex items-center">
                   <img

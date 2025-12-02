@@ -11,7 +11,7 @@ import { useFavoritesStore } from "@/store/useFavoritesStore";
 const ProductCard = (props: Product) => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
   const isFavorite = useFavoritesStore((s) => s.isFavorite(props.id));

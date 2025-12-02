@@ -1,17 +1,16 @@
 import React from "react";
 import CountUp from "react-countup";
-import { Sparkline } from "./Sparkline";
-import { ShoppingCart, DollarSign, Users, Clock } from "lucide-react";
+import { ShoppingCart, DollarSign, Users } from "lucide-react";
 
 interface KPIProps {
-  filter: "today" | "week" | "month" | "year";
+  // filter: "today" | "week" | "month" | "year";
   kpis: Record<string, any>;
 }
 
-const KPICards: React.FC<KPIProps> = ({ filter, kpis }) => {
+const KPICards: React.FC<KPIProps> = ({  kpis }) => {
   const items = [
     { label: "Total Revenue", value: kpis.totalRevenue, icon: DollarSign, trend: kpis.revenueGrowth },
-    { label: "Today Revenue", value: kpis.todaysRevenue, icon: DollarSign, trend: kpis.todaysTrend },
+    { label: "Total Sales", value: kpis.todaysRevenue, icon: DollarSign, trend: kpis.todaysTrend },
     { label: "Total Orders", value: kpis.totalOrders, icon: ShoppingCart, trend: kpis.ordersTrend },
     { label: "Avg. Order Value", value: kpis.aov, icon: Users, trend: kpis.aovTrend },
   ];

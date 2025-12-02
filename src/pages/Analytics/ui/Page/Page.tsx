@@ -1,19 +1,3 @@
-// Project: Analytics Feature (React + TypeScript + Tailwind + Chart.js)
-// File tree (copy these files into your project under src/analytics-feature)
-// -----------------------------------------------------------------------------
-// src/pages/Analytics.tsx
-// src/components/analytics/KPICards.tsx
-// src/components/analytics/DateFilter.tsx
-// src/components/analytics/ExportButtons.tsx
-// src/components/analytics/ChartWrapper.tsx
-// src/data/analyticsData.ts
-// src/utils/exportUtils.ts
-// src/components/analytics/Sparkline.tsx
-// -----------------------------------------------------------------------------
-
-// ---------------------------
-// File: src/pages/Analytics.tsx
-// ---------------------------
 import React, { useMemo, useState } from "react";
 import { Line, Bar, Doughnut } from "react-chartjs-2";
 import {
@@ -67,15 +51,8 @@ const Analytics: React.FC = () => {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen space-y-6">
+      <div className="min-h-screen space-y-6 user-select-none cursor-default">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <div>
-            <h1 className="text-3xl font-extrabold md:text-4xl">Analytics</h1>
-            <p className="mt-1 text-gray-500">
-              Business insights and performance overview
-            </p>
-          </div>
-
           <div className="flex items-center gap-3">
             <DateFilter filter={filter} setFilter={setFilter} />
             <ExportButtons
@@ -87,7 +64,7 @@ const Analytics: React.FC = () => {
           </div>
         </div>
 
-        <KPICards filter={filter} kpis={kpis} />
+        <KPICards kpis={kpis} />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           <ChartWrapper title="Sales Over Time">
@@ -173,20 +150,3 @@ const Analytics: React.FC = () => {
 };
 
 export default Analytics;
-
-// -------------------------------
-// File: src/utils/exportUtils.ts
-// -------------------------------
-// Minimal CSV / PDF export helpers using simple techniques (no heavy libs required)
-
-// -------------------------------
-// Notes & Usage
-// -------------------------------
-// Dependencies to install (npm or yarn):
-// react-chartjs-2 chart.js react-countup lucide-react file-saver jspdf
-// npm i react-chartjs-2 chart.js react-countup lucide-react file-saver jspdf
-
-// Tailwind: ensure tailwind is configured in your project and global styles are loaded.
-// To use this feature drop the files into your src folder and add a route to /analytics.
-
-// That's the complete feature pack ready to paste into your project. Enjoy!
