@@ -80,18 +80,17 @@ const ProductDetails: React.FC = () => {
           {products
             .filter((p) => p.id !== product.id)
             .map((p) => (
-              <div key={p.id} className="rounded-lg bg-white p-3 shadow">
+              <div
+                key={p.id}
+                className="rounded-lg bg-white p-3 shadow cursor-pointer"
+                onClick={() => navigate(`/products/${p.id}`)}
+              >
                 <div
                   className="h-28 rounded-md bg-contain bg-center bg-no-repeat"
                   style={{ backgroundImage: `url('${p.images[0]}')` }}
                 />
                 <div className="mt-2 flex items-center justify-between">
-                  <div
-                    className="text-sm font-medium"
-                    onClick={() => navigate(`/products/${p.id}`)}
-                  >
-                    {p.name}
-                  </div>
+                  <div className="text-sm font-medium">{p.name}</div>
                   <div className="text-sm text-gray-500">
                     ${p.price.toFixed(2)}
                   </div>

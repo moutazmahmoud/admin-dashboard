@@ -18,7 +18,7 @@ export function generateLineData(range: string) {
   // month or year fallback
   const days = range === 'month' ? 30 : 12;
   return {
-    labels: Array.from({length:days}, (_,i)=> range === 'month' ? `Day ${i+1}` : `M${i+1}`),
+    labels: Array.from({length:days}, (_,i)=> range === 'month' ? `${i+1}` : `${i+1}`),
     datasets: [{ label: 'Sales', data: Array.from({length:days}, ()=>rand(200,1400)), borderColor: '#8b5cf6', backgroundColor: 'rgba(139,92,246,0.12)', tension: 0.3, fill: true }]
   };
 }

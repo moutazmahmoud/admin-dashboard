@@ -1,5 +1,5 @@
 import PageWrapper from "@/components/PageWrapper";
-import ProductCard from "@/pages/Products/ui/Page/components/ProductCard";
+import ProductCard from "@/pages/Products/ui/components/ProductCard";
 import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { FC } from "react";
 import { Heart } from "lucide-react";

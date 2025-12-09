@@ -1,7 +1,7 @@
 import { mockDeals } from "@/lib/MockData";
 import { Deal } from "@/types/Deal";
 import { MoveDown, MoveUp, MoveVertical } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const getStatusColor = (status: Deal["status"]) => {
   switch (status) {
@@ -35,32 +35,61 @@ export default function DealsTable() {
 
   const renderSortIcon = (column: keyof Deal) => {
     if (sortColumn !== column || sortOrder === "none") {
-      return <span className="ml-1"><MoveVertical className="w-[0.8rem] h-[0.8rem] text-black" /></span>;
+      return (
+        <span className="ml-1">
+          <MoveVertical className="h-[0.8rem] w-[0.8rem] text-black" />
+        </span>
+      );
     }
-    if (sortOrder === "asc") return <span className="ml-1"><MoveUp className="w-[0.8rem] h-[0.8rem] text-black" /></span>;
-    if (sortOrder === "desc") return <span className="ml-1"><MoveDown className="w-[0.8rem] h-[0.8rem] text-black" /></span>;
+    if (sortOrder === "asc")
+      return (
+        <span className="ml-1">
+          <MoveUp className="h-[0.8rem] w-[0.8rem] text-black" />
+        </span>
+      );
+    if (sortOrder === "desc")
+      return (
+        <span className="ml-1">
+          <MoveDown className="h-[0.8rem] w-[0.8rem] text-black" />
+        </span>
+      );
   };
 
-  // تطبيق الترتيب
   const sortedDeals = [...mockDeals].sort((a, b) => {
     if (!sortColumn || sortOrder === "none") return 0;
 
     const valA = a[sortColumn];
     const valB = b[sortColumn];
 
-    // لو values أرقام
     if (typeof valA === "number" && typeof valB === "number") {
       return sortOrder === "asc" ? valA - valB : valB - valA;
     }
 
-    // لو نصوص
     return sortOrder === "asc"
       ? String(valA).localeCompare(String(valB))
       : String(valB).localeCompare(String(valA));
   });
 
+  useEffect(() => {
+    const rows = document.querySelectorAll(".deal-row");
+
+    rows.forEach((row, i) => {
+      row.addEventListener("mouseenter", () => {
+        if (i > 0) {
+          rows[i - 1].classList.add("border-transparent");
+        }
+      });
+
+      row.addEventListener("mouseleave", () => {
+        if (i > 0) {
+          rows[i - 1].classList.remove("border-transparent");
+        }
+      });
+    });
+  }, []);
+
   return (
-    <div className="w-full overflow-x-auto rounded-[0.8rem] bg-white p-8 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+    <div className="w-full overflow-x-auto rounded-[0.8rem] bg-white p-8 shadow-md transition duration-300 ease-in-out hover:shadow-lg">
       <div className="mb-8 flex items-center justify-between">
         <h3 className="text-lg font-semibold">Deals Table</h3>
       </div>
@@ -100,7 +129,10 @@ export default function DealsTable() {
 
         <tbody>
           {sortedDeals.map((deal, idx) => (
-            <tr key={idx} className="rounded-2xl border-b hover:border-transparent hover:bg-gray-50">
+            <tr
+              key={idx}
+              className="rounded-2xl border-b hover:border-transparent hover:bg-gray-50 deal-row transition-colors duration-300 ease-in-out"
+            >
               <td className="rounded-bl-2xl rounded-tl-2xl py-4 pl-12">
                 <div className="flex items-center">
                   <img

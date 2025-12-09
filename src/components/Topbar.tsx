@@ -11,8 +11,8 @@ interface TopbarProps {
 export default function Topbar({ onToggleSidebar }: TopbarProps) {
   return (
     <div className="flex w-full items-center justify-between bg-base-100 px-[1.875rem] py-[0.8125rem] shadow">
-      <div className="flex gap-2">
-        <button onClick={onToggleSidebar}>
+      <div className="flex gap-6">
+        <button onClick={onToggleSidebar} className="hover:text-primary transition-colors duration-200 ease-in-out">
           <Menu />
         </button>
         <Searchbar />

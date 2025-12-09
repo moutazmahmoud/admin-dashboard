@@ -99,7 +99,7 @@ const Analytics: React.FC = () => {
 
           <ChartWrapper title="Revenue Forecast" className="xl:col-span-2">
             <Line
-              data={generateLineData("month")}
+              data={generateLineData(filter)}
               options={{
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
@@ -109,7 +109,7 @@ const Analytics: React.FC = () => {
 
           <ChartWrapper title="Top Selling Products" className="xl:col-span-1">
             <Bar
-              data={generateBarData("month", true)}
+              data={generateBarData(filter, true)}
               options={{
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },

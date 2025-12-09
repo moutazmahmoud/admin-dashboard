@@ -41,17 +41,21 @@ const App: FC = () => {
 
   return (
     <>
-      <SplashLoader
-        open={showLoader}
-        minDuration={1000}
-        onFinish={() => setShowLoader(false)}
-      />
+      {showLoader && (
+        <AnimatePresence mode="wait">
+          <SplashLoader
+            open={showLoader}
+            minDuration={1000}
+            onFinish={() => setShowLoader(false)}
+          />
+        </AnimatePresence>
+      )}
 
       {/* Only render routes when splash loader is gone */}
       {!showLoader && (
         <>
           <AnimatePresence mode="wait">
-            <Routes location={location} >
+            <Routes location={location}>
               {/* Protected dashboard */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<DashboardLayout />}>

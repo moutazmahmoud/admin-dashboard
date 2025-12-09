@@ -6,9 +6,10 @@ import NavItem from "./NavItem";
 import { useAuthStore } from "@/store/useAuthStore";
 import LogoutIcon from "@/assets/icons/turn-off.svg?react";
 import { useModalStore } from "@/store/useModalStore";
-import Logo from "@/assets/images/logo.png";
+import LogoShort from "@/assets/images/logoshort.png";
+import LogoLabel from "@/assets/images/logoLabel.png";
 
-const ITEM_HEIGHT = 50;
+const ITEM_HEIGHT = 48;
 
 interface SidebarProps {
   isExpanded: boolean;
@@ -37,13 +38,23 @@ const Sidebar = ({ isExpanded }: SidebarProps) => {
   const showIndicator = activeIndex !== -1;
 
   return (
-    <div
-      className={`bg-main relative h-screen p-6 text-center overflow-hidden ${
-        isExpanded ? "w-[15rem] min-w-[15rem]" : "w-[7rem] min-w-[7rem]"
-      }`}
+    <motion.div
+      // animate={{ maxWidth: isExpanded ? 240 : 96 }}
+      transition={{ duration: 5, ease: "easeInOut" }}
+      className="bg-main relative flex h-screen flex-col p-6"
     >
-      <h2 className="mb-7 w-48 text-lg font-extrabold">
-        <img src={Logo} alt="logo" className="w-full" />
+      <h2 className="mb-7 flex items-center text-lg font-extrabold">
+        <img src={LogoShort} alt="logo" className="h-10" />
+        <motion.img
+          src={LogoLabel}
+          animate={{
+            opacity: isExpanded ? 1 : 0,
+            width: isExpanded ? "123px" : 0,
+            // minWidth: isExpanded ? "123px" : 0,
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="h-10 overflow-hidden"
+        />
       </h2>
 
       <ul className="relative z-10">
@@ -71,7 +82,7 @@ const Sidebar = ({ isExpanded }: SidebarProps) => {
           isExpanded={isExpanded}
         />
       </ul>
-    </div>
+    </motion.div>
   );
 };
 
