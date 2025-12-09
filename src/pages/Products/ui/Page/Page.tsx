@@ -18,15 +18,14 @@ const Products: FC = () => {
           >
             Add Product
           </Button>
+          <div className="min-h-6"></div>
           <BannerSlider />
           <ProductsGrid />
-          {showAddProductForm && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <button onClick={() => setShowAddProductForm(false)}>X</button>
-              
-              <AddProductForm />
-            </div>
-          )}
+
+          <AddProductForm
+            setShowAddProductForm={setShowAddProductForm}
+            isOpen={showAddProductForm}
+          />
         </div>
       </section>
     </PageWrapper>
