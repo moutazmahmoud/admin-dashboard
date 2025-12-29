@@ -21,7 +21,6 @@ import SplashLoader from "./components/SplashLoader";
 import Todos from "./pages/Todos";
 import Analytics from "./pages/Analytics/ui/Page/Page";
 import { ProductDetails } from "./pages/ProductDetails";
-import ProfileModal from "./components/ProfileModal";
 
 const App: FC = () => {
   const { isAuthResolved, initAuthListener, user } = useAuthStore();
