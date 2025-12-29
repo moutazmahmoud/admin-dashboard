@@ -138,9 +138,16 @@ const Analytics: React.FC = () => {
           <div className="rounded-xl bg-white p-4 shadow">
             <h3 className="mb-2 font-semibold">Top Items</h3>
             <ol className="list-inside list-decimal space-y-1 text-sm text-gray-700">
-              <li>Iced Latte — 320 sold</li>
-              <li>Caramel Latte — 285 sold</li>
-              <li>Espresso — 210 sold</li>
+              <li>Iphone 14 — 320 sold</li>
+              <li>Iphone 14 Pro — 285 sold</li>
+              <li>MacBook Pro — 210 sold</li>
+              <li>MacBook Air — 190 sold</li>
+              <li>iPad Pro — 150 sold</li>
+              <li>iPad Air — 140 sold</li>
+              <li>MacBook — 130 sold</li>
+              <li>AirPods Pro — 120 sold</li>
+              <li>AirPods Max — 110 sold</li>
+              <li>Apple Watch — 100 sold</li>
             </ol>
           </div>
         </div>

@@ -21,12 +21,12 @@ import SplashLoader from "./components/SplashLoader";
 import Todos from "./pages/Todos";
 import Analytics from "./pages/Analytics/ui/Page/Page";
 import { ProductDetails } from "./pages/ProductDetails";
+import ProfileModal from "./components/ProfileModal";
 
 const App: FC = () => {
-  const { isAuthResolved, initAuthListener } = useAuthStore();
+  const { isAuthResolved, initAuthListener, user } = useAuthStore();
   const [showLoader, setShowLoader] = useState(true);
   const location = useLocation();
-
   // Initialize auth state once
   useEffect(() => {
     initAuthListener();
@@ -45,7 +45,7 @@ const App: FC = () => {
         <AnimatePresence mode="wait">
           <SplashLoader
             open={showLoader}
-            minDuration={1000}
+            minDuration={500}
             onFinish={() => setShowLoader(false)}
           />
         </AnimatePresence>
@@ -58,7 +58,7 @@ const App: FC = () => {
             <Routes location={location}>
               {/* Protected dashboard */}
               <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<DashboardLayout />}>
+                <Route path="/" element={<DashboardLayout user={user} />}>
                   <Route index element={<Home />} />
                   <Route path="products" element={<Products />} />
                   <Route path="favorites" element={<Favorites />} />
@@ -68,6 +68,7 @@ const App: FC = () => {
                   <Route path="product-stock" element={<ProductsStock />} />
                   <Route path="todos" element={<Todos />} />
                   <Route path="*" element={<NoMatch />} />
+                  
                 </Route>
               </Route>
 

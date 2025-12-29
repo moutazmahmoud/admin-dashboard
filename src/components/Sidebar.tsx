@@ -44,7 +44,16 @@ const Sidebar = ({ isExpanded }: SidebarProps) => {
       className="bg-main relative flex h-screen flex-col p-6"
     >
       <h2 className="mb-7 flex items-center text-lg font-extrabold">
-        <img src={LogoShort} alt="logo" className="h-10" />
+        <motion.img
+          src={LogoShort}
+          alt="logo"
+          className="h-10"
+          animate={{
+            x: isExpanded ? 0 : 4,
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          
+        />
         <motion.img
           src={LogoLabel}
           animate={{
@@ -54,6 +63,7 @@ const Sidebar = ({ isExpanded }: SidebarProps) => {
           }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="h-10 overflow-hidden"
+          alt="Dashboard"
         />
       </h2>
 

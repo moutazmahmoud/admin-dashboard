@@ -2,10 +2,14 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { ChevronDown } from "lucide-react";
 import ProfileImg from "@/assets/images/empty-avatar.jpg";
 
-const ProfileDropdown = () => {
+interface ProfileDropdownProps {
+  onOpenProfileModal?: () => void;
+}
+
+const ProfileDropdown = ({ onOpenProfileModal }: ProfileDropdownProps) => {
   const user = useAuthStore((state) => state.user);
   return (
-    <div className="dropdown-end dropdown flex items-center gap-4">
+    <div className="dropdown-end dropdown flex items-center gap-4" onClick={onOpenProfileModal}>
       <div className="h-11 w-11 overflow-hidden rounded-full">
         <img src={ProfileImg} alt="User avatar" />
 
